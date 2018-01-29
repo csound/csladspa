@@ -32,7 +32,7 @@
 #if defined(__APPLE__)
 #include <CsoundLib64/csound.hpp>
 #else
-#include <csound/csound.hpp>
+#include <csound.hpp>
 #endif
 #include "ladspa.h"
 using namespace std;

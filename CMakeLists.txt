@@ -34,7 +34,7 @@ message(STATUS "Building CsLadspa Plugin!")
 make_plugin_frontend(csladspa "src/csladspa.cpp"
 "${CSOUND_LIBRARY}")
 target_include_directories(csladspa PRIVATE
-${CSOUND_INCLUDE_DIRECTORIES})
+  ${CSOUND_INCLUDE_DIRS})
 # We do not want the lib prefix
 set_target_properties(csladspa PROPERTIES PREFIX "")
 else()
