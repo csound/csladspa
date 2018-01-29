@@ -35,7 +35,9 @@ make_plugin_frontend(csladspa "src/csladspa.cpp"
 "${CSOUND_LIBRARY}")
 target_include_directories(csladspa PRIVATE
 ${CSOUND_INCLUDE_DIRECTORIES})
+if(APPLE)
 add_definitions(-DMACOSX)
+endif()
 # We do not want the lib prefix
 set_target_properties(csladspa PROPERTIES PREFIX "")
 else()
