@@ -29,7 +29,11 @@
 #include <fstream>
 #include <iostream>
 #include <cstring>
-#include "csound.hpp"
+#if defined(MACOSX)
+#include <CsoundLib64/csound.hpp>
+#else
+#include <csound/csound.hpp>
+#endif
 #include "ladspa.h"
 using namespace std;
 
