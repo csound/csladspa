@@ -29,7 +29,7 @@
 #include <fstream>
 #include <iostream>
 #include <cstring>
-#if defined(MACOSX)
+#if defined(__APPLE__)
 #include <CsoundLib64/csound.hpp>
 #else
 #include <csound/csound.hpp>
