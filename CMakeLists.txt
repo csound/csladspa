@@ -5,9 +5,9 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
 find_package(Csound)
 
 if(APPLE)
-set(PLUGIN_INSTALL_DIR "$ENV{HOME}/Library/Audio/Plug-Ins/ladspa")
+    set(PLUGIN_INSTALL_DIR "$ENV{HOME}/Library/Audio/Plug-Ins/ladspa")
 else()
-set(PLUGIN_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/lib")
+    set(PLUGIN_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/lib")
 endif()
 
 function(make_plugin_frontend libname srcs)
@@ -25,18 +25,16 @@ function(make_plugin_frontend libname srcs)
         math(EXPR i "${i}+1")
     endwhile()
     
-   install(TARGETS ${libname}
-	LIBRARY DESTINATION "${PLUGIN_INSTALL_DIR}" )
+   install(TARGETS ${libname} LIBRARY DESTINATION "${PLUGIN_INSTALL_DIR}" )
 endfunction(make_plugin_frontend)
 
 if(CSOUND_FOUND)
-message(STATUS "Building CsLadspa Plugin!")
-make_plugin_frontend(csladspa "src/csladspa.cpp"
-"${CSOUND_LIBRARY}")
-target_include_directories(csladspa PRIVATE
-  ${CSOUND_INCLUDE_DIRS})
-# We do not want the lib prefix
-set_target_properties(csladspa PROPERTIES PREFIX "")
+    message(STATUS "Building CsLadspa Plugin!")
+    make_plugin_frontend(csladspa "src/csladspa.cpp" "${CSOUND_LIBRARY}")
+    target_include_directories(csladspa PRIVATE ${CSOUND_INCLUDE_DIRS})
+    # We do not want the lib prefix
+    set_target_properties(csladspa PROPERTIES PREFIX "")
 else()
-message(STATUS "Csound library is required for CsLadspa")
+    message(FATAL_ERROR "Csound library is required for CsLadspa")
 endif()
+
