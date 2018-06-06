@@ -401,7 +401,7 @@ static LADSPA_Descriptor *init_descriptor(char *csdname, int plugindex)
         cerr << "PLUGIN LOADED\n";
         return desc;
       }
-      delete[] str;
+      else delete[] str;
     }
   // otherwise we just delete the empty descriptors
   // and return NULL
@@ -452,7 +452,6 @@ unsigned int CountCSD(char **csdnames)
     else dip = opendir(ladspa_path);
   }
   if (dip == NULL) {
-    free(src);
     return 0;
   }
   while ((dit = readdir(dip))!=NULL)
